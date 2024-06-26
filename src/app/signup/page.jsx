@@ -4,14 +4,16 @@ import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { spiral } from 'ldrs';
 
+
 spiral.register();
+
 
 const Spinner = () => (
     <l-spiral
         size="20" // Adjust size as needed
         speed="0.9"
         color="#4a00ff" // Set the color to white for better visibility on the button
-    ></l-spiral>
+    />
 );
 
 const Page = () => {

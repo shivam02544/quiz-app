@@ -45,9 +45,8 @@ const Page = () => {
 
           })
         }
-
-        <span ref={bottomRef} ></span>
       </div>
+      <span ref={bottomRef} ></span>
     </div>
   );
 };
