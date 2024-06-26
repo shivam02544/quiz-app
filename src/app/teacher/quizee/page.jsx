@@ -1,20 +1,11 @@
 "use client"
 import HeaderAfterLogin from '@/app/components/HeaderAfterLogin'
+import Spinner from '@/app/components/Spinner';
 import { convertToDateAndFormat } from '@/helper/convertDate';
 import { verifyToken } from '@/helper/jwtToken';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
-import { spiral } from 'ldrs';
 
-spiral.register();
-
-const Spinner = () => (
-    <l-spiral
-        size="20" // Adjust size as needed
-        speed="0.9"
-        color="#4a00ff" // Set the color to white for better visibility on the button
-    />
-);
 
 const Page = () => {
     const [loading, setLoading] = useState(false)

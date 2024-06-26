@@ -4,17 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { spiral } from 'ldrs';
+import Spinner from '../components/Spinner'
 
-spiral.register();
-
-const Spinner = () => (
-    <l-spiral
-        size="20" // Adjust size as needed
-        speed="0.9"
-        color="#4a00ff" // Set the color to white for better visibility on the button
-    />
-);
 const Page = () => {
     const router = useRouter()
     const [loading, setLoading] = useState(false)

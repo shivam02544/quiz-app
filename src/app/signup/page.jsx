@@ -2,19 +2,7 @@
 import Header from '@/app/components/Header'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
-import { spiral } from 'ldrs';
-
-
-spiral.register();
-
-
-const Spinner = () => (
-    <l-spiral
-        size="20" // Adjust size as needed
-        speed="0.9"
-        color="#4a00ff" // Set the color to white for better visibility on the button
-    />
-);
+import Spinner from '../components/Spinner'
 
 const Page = () => {
     const [loading, setLoading] = useState(false)
@@ -64,12 +52,15 @@ const Page = () => {
                     <option value="student">I am a student</option>
                     <option value="teacher">I am a teacher</option>
                 </select>
-                <button disabled={loading} type='submit' className='text-lg btn btn-primary w-full max-w-xs'>
-                    {loading ? (
-                        <Spinner />
-                    ) : (
-                        `Register`
-                    )}
+                <button disabled={loading} type='submit' className='text-lg btn btn-primary  w-full max-w-xs text-white'>
+                    {
+                        loading ? (
+                            <Spinner />
+                        ) : (
+                            'Register'
+                        )
+                    }
+
                 </button>
             </form>
         </div>

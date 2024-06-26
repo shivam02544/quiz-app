@@ -2,21 +2,9 @@
 import Header from '@/app/components/Header'
 import { getToken } from '@/helper/jwtToken';
 import { useRouter } from 'next/navigation';
-import { spiral } from 'ldrs';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
-
-spiral.register();
-
-const Spinner = () => (
-    <l-spiral
-        size="20" // Adjust size as needed
-        speed="0.9"
-        color="#4a00ff" // Set the color to white for better visibility on the button
-    />
-);
-
-
+import Spinner from '../components/Spinner';
 
 const Page = () => {
     const [loading, setLoading] = useState(false)

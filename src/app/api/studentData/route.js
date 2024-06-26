@@ -14,7 +14,6 @@ export const GET = async (request) => {
 
 export const POST = async (request) => {
   const body = await request.json();
-  console.log(body);
   await connectDb();
   let studentInfo = await Student.findOne({ studentId: body.studentId });
   if (!studentInfo) {
