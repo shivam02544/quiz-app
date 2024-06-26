@@ -14,7 +14,7 @@ const Spinner = () => (
     ></l-spiral>
 );
 
-const page = () => {
+const Page = () => {
     const [loading, setLoading] = useState(false)
     const signup = async (e) => {
         e.preventDefault()
@@ -74,4 +74,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

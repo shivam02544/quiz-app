@@ -17,7 +17,7 @@ const Spinner = () => (
     ></l-spiral>
 );
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
     const router = useRouter()
     const [questions, setQuestions] = useState([]);
     const [currentQuestion, setCurrentQuestion] = useState()
@@ -184,4 +184,4 @@ const page = ({ params }) => {
     )
 }
 
-export default page;
+export default Page;

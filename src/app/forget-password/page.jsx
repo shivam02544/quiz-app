@@ -3,6 +3,8 @@ import Header from '@/app/components/Header'
 import { getToken } from '@/helper/jwtToken';
 import { useRouter } from 'next/navigation';
 import { spiral } from 'ldrs';
+import React, { useState } from 'react'
+import toast from 'react-hot-toast';
 
 spiral.register();
 
@@ -14,10 +16,9 @@ const Spinner = () => (
     ></l-spiral>
 );
 
-import React, { useState } from 'react'
-import toast from 'react-hot-toast';
 
-const page = () => {
+
+const Page = () => {
     const [loading, setLoading] = useState(false)
     const router = useRouter()
     const [email, setEmail] = useState("");
@@ -67,4 +68,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

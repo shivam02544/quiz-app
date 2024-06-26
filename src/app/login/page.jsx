@@ -15,7 +15,7 @@ const Spinner = () => (
         color="#4a00ff" // Set the color to white for better visibility on the button
     ></l-spiral>
 );
-const page = () => {
+const Page = () => {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const login = async (e) => {
@@ -67,4 +67,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

@@ -16,7 +16,7 @@ const Spinner = () => (
     ></l-spiral>
 );
 
-const page = () => {
+const Page = () => {
     const [loading, setLoading] = useState(false)
     const [currentQuiz, setCurrentQuiz] = useState([]);
     const [quizzes, setQuizzes] = useState([]);
@@ -129,4 +129,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page

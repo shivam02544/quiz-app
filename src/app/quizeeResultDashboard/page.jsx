@@ -5,7 +5,7 @@ import { convertToDateAndFormat } from "@/helper/convertDate";
 import { verifyToken } from "@/helper/jwtToken";
 import React, { useEffect, useRef, useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [results, setResults] = useState([]);
   const bottomRef = useRef(null);
   useEffect(() => {
@@ -52,4 +52,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -15,7 +15,7 @@ const Spinner = () => (
     ></l-spiral>
 );
 
-const page = () => {
+const Page = () => {
     const [loading, setLoading] = useState(false)
     const [question, setQuestion] = useState("");
     const [option1, setOption1] = useState("");
@@ -166,4 +166,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
