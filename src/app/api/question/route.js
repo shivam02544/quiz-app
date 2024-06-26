@@ -7,7 +7,7 @@ export const GET = async (request) => {
   const teacherId = searchParams.get("id");
   await connectDb();
   const teacherInfo = await TeacherQuiz.findOne({ teacherId: teacherId });
-  if (!teacherInfo) return NextResponse.json({});
+  if (!teacherInfo) return NextResponse.json([]);
   return NextResponse.json(teacherInfo.questions, {
     status: 200,
   });

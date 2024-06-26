@@ -1,8 +1,21 @@
 "use client"
 import HeaderAfterLogin from '@/components/HeaderAfterLogin'
+import { getTimeInterval } from '@/helper/getTimeInterval'
+import { verifyToken } from '@/helper/jwtToken'
 import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast'
+import { spiral } from 'ldrs';
+
+spiral.register();
+
+const Spinner = () => (
+    <l-spiral
+        size="20" // Adjust size as needed
+        speed="0.9"
+        color="#4a00ff" // Set the color to white for better visibility on the button
+    ></l-spiral>
+);
 
 const page = ({ params }) => {
     const router = useRouter()
@@ -13,21 +26,29 @@ const page = ({ params }) => {
     const [answered, setAnswered] = useState(false)
     const [selectedAnswer, setSelectedAnswer] = useState(null);
     const [submit, setSubmit] = useState(false)
-    // const [quizStartTime, setQuizStartTime] = useState("");
+    const [quizStartTime, setQuizStartTime] = useState("");
+    const [answerSummary, setAnswerSummary] = useState([]);
+    const [loading, setLoading] = useState(false);
+
 
     const handleAnswerOptionClick = (answerOption) => {
         setSelectedAnswer(answerOption);
         setAnswered(true);
 
         if (answerOption == currentQuestion.answer) {
+            setAnswerSummary([...answerSummary, { option: answerOption, isCorrect: true, answer: currentQuestion.answer }])
             setScore(score + 1);
+
+        }
+        else {
+            setAnswerSummary([...answerSummary, { option: answerOption, isCorrect: false, answer: currentQuestion.answer }])
         }
     };
     const handleNextQuestion = () => {
         setAnswered(false);
         setSelectedAnswer(null);
-        const nextIndex = questionIndex + 1;
-        if (nextIndex < questions.length) {
+        let nextIndex = questionIndex + 1;
+        if (nextIndex < questions.questions.length) {
             setQuestionIndex(nextIndex);
             setCurrentQuestion(questions.questions[nextIndex]);
             if (nextIndex == questions.questions.length - 1)
@@ -35,11 +56,44 @@ const page = ({ params }) => {
         }
 
     };
-    function handleSubmit() {
-
+    async function handleSubmit() {
+        setLoading(true);
+        const quizSubmissionTime = new Date();
+        const token = localStorage.getItem("token");
+        const student = await verifyToken(token)
+        const totalTimeTaken = getTimeInterval(quizStartTime, new Date());
+        const numberOfQuestions = questions.questions.length
+        const res = await fetch(`/api/studentData`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                studentId: student.data.id,
+                roomId: questions.roomId,
+                quizJoiningTime: quizStartTime,
+                quizSubmissionTime: quizSubmissionTime,
+                totalTimeTaken: totalTimeTaken,
+                score: score,
+                numberOfQuestions: numberOfQuestions,
+                quizSummary: answerSummary,
+            })
+        })
+        if (!res.ok) {
+            toast.dismiss()
+            toast.error("Something went wrong, try again later")
+            setLoading(false)
+            return
+        }
+        const data = await res.json()
+        toast.dismiss()
+        toast.success(data.message)
+        setLoading(false)
+        router.push("/quizeeResultDashboard")
     }
 
     useEffect(() => {
+        console.log("Use Effect called");
         async function get() {
             const res = await fetch(`/api/quizQuestion?roomId=${params.roomId}`)
             const data = await res.json();
@@ -52,6 +106,7 @@ const page = ({ params }) => {
             setQuestions(data)
             setCurrentQuestion(data.questions[0])
             if (data.questions.length == 1) setSubmit(true)
+            setQuizStartTime(new Date())
         }
         get();
     }, [])
@@ -112,7 +167,12 @@ const page = ({ params }) => {
                             answered &&
                             (
                                 submit ?
-                                    <button onClick={handleSubmit} className='btn bg-green-600 mt-4 shadow-lg text-white'>Submit</button>
+                                    <button disabled={loading} onClick={handleSubmit} className='btn bg-green-600 mt-4 shadow-lg text-white'>
+                                        {loading ? (
+                                            <Spinner />
+                                        ) : (
+                                            'Submit'
+                                        )}</button>
                                     :
                                     <button onClick={handleNextQuestion} className='btn btn-primary mt-4 shadow-lg'>Next -{'>'}</button>
                             )
@@ -124,4 +184,4 @@ const page = ({ params }) => {
     )
 }
 
-export default page
+export default page;

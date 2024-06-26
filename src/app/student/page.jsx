@@ -1,5 +1,6 @@
 "use client"
 import HeaderAfterLogin from '@/components/HeaderAfterLogin'
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'
 
@@ -17,7 +18,9 @@ const page = () => {
                     <input onChange={(e) => setRoomId(e.target.value)} type="text" placeholder="Room Code" className="input w-full max-w-xs shadow-md" />
                     <button onClick={sendToRoom} className='btn btn-primary'>Join Room</button>
                 </div>
-                <button className='btn btn-primary text-lg '>Quiz results dashboard</button>
+                <Link href="/quizeeResultDashboard">
+                    <button className='btn btn-primary text-lg '>Quiz results dashboard</button>
+                </Link>
             </div>
         </div>
     )
