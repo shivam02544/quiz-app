@@ -32,7 +32,7 @@ const Page = () => {
         {
           results.map((result, index) => {
             return (
-              <div className="flex flex-col text-lg m-6 p-4 items-center rounded-xl shadow-xl bg-blue-100 border-blue-400 border-2 ">
+              <div key={index + 1} className="flex flex-col text-lg m-6 p-4 items-center rounded-xl shadow-xl bg-blue-100 border-blue-400 border-2 ">
                 <h2 className="font-extrabold text-2xl mb-2">Quiz Result</h2>
                 <span className="text-gray-500">Room code: <span className="text-primary font-bold text-xl text-wrap">{result.roomId}</span></span>
                 <span className="text-gray-500">Quiz joined in: <span className="text-primary  text-lg">{convertToDateAndFormat(result.quizJoiningTime)}</span></span>

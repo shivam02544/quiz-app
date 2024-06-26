@@ -18,11 +18,11 @@ export default function Home() {
           uiz application.
         </h1>
         <p className=" text-gray-600 max-w-4xl m-4 text-center">
-          " Teachers create quizzes with multiple-choice questions, generating
-          unique links and room codes for student access. They monitor student
-          participation and view real-time results post-quiz. Students join
-          quizzes using room codes, select answers, and instantly receive
-          feedback."
+          &quot; Teachers create quizzes with multiple-choice questions,
+          generating unique links and room codes for student access. They
+          monitor student participation and view real-time results post-quiz.
+          Students join quizzes using room codes, select answers, and instantly
+          receive feedback.&quot;
         </p>
         <div className="flex gap-8 m-4">
           <Link href="/login">

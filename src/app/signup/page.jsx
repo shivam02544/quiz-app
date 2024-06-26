@@ -66,7 +66,7 @@ const Page = () => {
                     {loading ? (
                         <Spinner />
                     ) : (
-                        'Register'
+                        `Register`
                     )}
                 </button>
             </form>

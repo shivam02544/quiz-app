@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
 
 
-const PieChartComponent = ({ wrong, correct }) => {
+const PieChartComponent = (props) => {
     const canvasRef = useRef(null);
     const chartRef = useRef(null);
     useEffect(() => {
@@ -12,7 +12,7 @@ const PieChartComponent = ({ wrong, correct }) => {
             datasets: [
                 {
                     label: "Quiz result",
-                    data: [wrong, correct],
+                    data: [props.wrong, props.correct],
                     backgroundColor: [
                         "rgb(133, 105, 241)",
                         "rgb(164, 101, 241)",
@@ -36,7 +36,7 @@ const PieChartComponent = ({ wrong, correct }) => {
         return () => {
             chartRef.current.destroy();
         };
-    }, []);
+    });
 
     return (
         <div className=" size-72">
