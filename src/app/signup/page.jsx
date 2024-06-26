@@ -59,8 +59,8 @@ const Page = () => {
                 <input className="input input-bordered w-full max-w-xs" type="email" placeholder='Email address' name='email' required />
                 <input className="input input-bordered w-full max-w-xs" type="password" placeholder='Password' name='password' required />
                 <select className="select select-bordered w-full max-w-xs" name='role' >
-                    <option value="student">I'm a student</option>
-                    <option value="teacher">I'm a teacher</option>
+                    <option value="student">I am a student</option>
+                    <option value="teacher">I am a teacher</option>
                 </select>
                 <button disabled={loading} type='submit' className='text-lg btn btn-primary w-full max-w-xs'>
                     {loading ? (
