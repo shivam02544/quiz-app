@@ -1,4 +1,4 @@
-import HeaderAfterLogin from '@/components/HeaderAfterLogin'
+import HeaderAfterLogin from '@/app/components/HeaderAfterLogin'
 import Link from 'next/link'
 import React from 'react'
 

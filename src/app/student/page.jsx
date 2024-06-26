@@ -1,5 +1,5 @@
 "use client"
-import HeaderAfterLogin from '@/components/HeaderAfterLogin'
+import HeaderAfterLogin from '@/app/components/HeaderAfterLogin'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react'

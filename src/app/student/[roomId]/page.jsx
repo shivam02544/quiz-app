@@ -1,5 +1,5 @@
 "use client"
-import HeaderAfterLogin from '@/components/HeaderAfterLogin'
+import HeaderAfterLogin from '@/app/components/HeaderAfterLogin'
 import { getTimeInterval } from '@/helper/getTimeInterval'
 import { verifyToken } from '@/helper/jwtToken'
 import { useRouter } from 'next/navigation'

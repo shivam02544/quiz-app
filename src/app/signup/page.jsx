@@ -1,5 +1,5 @@
 "use client"
-import Header from '@/components/Header'
+import Header from '@/app/components/Header'
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import { spiral } from 'ldrs';

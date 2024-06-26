@@ -1,5 +1,5 @@
 "use client"
-import Header from '@/components/Header'
+import Header from '@/app/components/Header'
 import { verifyToken } from '@/helper/jwtToken';
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'

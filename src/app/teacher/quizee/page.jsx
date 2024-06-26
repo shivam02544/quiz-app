@@ -1,5 +1,5 @@
 "use client"
-import HeaderAfterLogin from '@/components/HeaderAfterLogin'
+import HeaderAfterLogin from '@/app/components/HeaderAfterLogin'
 import { convertToDateAndFormat } from '@/helper/convertDate';
 import { verifyToken } from '@/helper/jwtToken';
 import React, { useEffect, useState } from 'react'

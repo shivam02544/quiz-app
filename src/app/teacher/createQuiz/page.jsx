@@ -1,5 +1,5 @@
 "use client"
-import HeaderAfterLogin from '@/components/HeaderAfterLogin'
+import HeaderAfterLogin from '@/app/components/HeaderAfterLogin'
 import { verifyToken } from '@/helper/jwtToken';
 import React, { useState } from 'react'
 import toast from 'react-hot-toast';
