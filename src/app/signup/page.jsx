@@ -8,6 +8,7 @@ const Page = () => {
     const [loading, setLoading] = useState(false)
     const [userOtp, setUserOtp] = useState("");
     const [otp, setOtp] = useState("");
+    const [userData, setUserData] = useState();
     const signup = async (e) => {
         e.preventDefault()
         setLoading(true)
@@ -24,6 +25,7 @@ const Page = () => {
         }
         // let userOtp = prompt("Enter your otp from your email address")
         setOtp(data.otp)
+        setUserData(formObject)
         document.getElementById('my_modal_1').showModal()
         e.target.reset()
         setLoading(false)
@@ -43,7 +45,7 @@ const Page = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(formObject)
+            body: JSON.stringify(userData)
         })
         data = await res.json();
         if (!res.ok) {
