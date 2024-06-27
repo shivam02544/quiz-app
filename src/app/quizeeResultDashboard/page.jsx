@@ -4,10 +4,12 @@ import PieChartComponent from "@/app/components/PieChartComponent";
 import { convertToDateAndFormat } from "@/helper/convertDate";
 
 import { verifyToken } from "@/helper/jwtToken";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 const Page = () => {
   const [results, setResults] = useState([]);
+  const router = useRouter()
   const bottomRef = useRef(null);
   useEffect(() => {
     async function get() {
@@ -17,6 +19,7 @@ const Page = () => {
       if (!res.ok) {
         toast.dismiss()
         toast.error("Something went wrong")
+        router.back()
         return
       }
       const data = await res.json();

@@ -6,7 +6,7 @@ export const GET = async (request) => {
   const studentId = await searchParams.get("id");
   await connectDb();
   const studentInfo = await Student.findOne({ studentId: studentId });
-  if (!studentInfo) return NextResponse.json({});
+  if (!studentInfo) return NextResponse.json([], { status: 400 });
   return NextResponse.json(studentInfo.results, {
     status: 200,
   });
@@ -56,6 +56,7 @@ export const PATCH = async (request) => {
   const { searchParams } = await new URL(request.url);
   const roomId = await searchParams.get("roomId");
   try {
+    await connectDb();
     const results = await Student.find({
       "results.roomId": roomId,
     });
@@ -68,6 +69,7 @@ export const PATCH = async (request) => {
       status: 200,
     });
   } catch (e) {
+    console.log(e);
     return NextResponse.json(
       { message: "Something went wrong" },
       {
