@@ -25,11 +25,11 @@ const Page = () => {
         // let userOtp = prompt("Enter your otp from your email address")
         setOtp(data.otp)
         document.getElementById('my_modal_1').showModal()
-
-
         e.target.reset()
+        setLoading(false)
     }
     async function checkOtp() {
+        setLoading(true)
         if (userOtp != otp) {
             toast.error("Otp is not valid")
             setLoading(false)
@@ -51,7 +51,6 @@ const Page = () => {
             setLoading(false)
             setUserOtp("")
             document.getElementById('my_modal_1').close()
-
             return
         }
         document.getElementById('my_modal_1').close()
@@ -90,7 +89,7 @@ const Page = () => {
                             type="text"
                             placeholder="Type here"
                             className="input input-bordered input-info w-full max-w-xs" />
-                        <button onClick={checkOtp} className='btn btn-primary '>Check</button>
+                        <button disabled={loading} onClick={checkOtp} className='btn btn-primary '>{loading ? <Spinner /> : "Check"}</button>
                     </div>
                 </div>
             </dialog>
