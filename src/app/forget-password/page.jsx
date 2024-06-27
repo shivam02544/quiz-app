@@ -14,6 +14,7 @@ const Page = () => {
     const [email, setEmail] = useState("");
     async function sendOtp(e) {
         setLoading(true)
+        setUserOtp("")
         e.preventDefault()
         let res = await fetch(`/api/sendOtp/${email}?role=forget`)
         let data = await res.json();
