@@ -55,8 +55,8 @@ const Page = () => {
             document.getElementById('my_modal_1').close()
             return
         }
-        document.getElementById('my_modal_1').close()
         setUserOtp("")
+        document.getElementById('my_modal_1').close()
         toast.success(data.message)
         setLoading(false)
     }
