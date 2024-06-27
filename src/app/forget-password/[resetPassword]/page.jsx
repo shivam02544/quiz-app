@@ -21,7 +21,7 @@ const Page = ({ params }) => {
         }
         get()
 
-    })
+    }, [])
     async function resetPassword(e) {
         setLoading(true)
         e.preventDefault()

@@ -22,14 +22,14 @@ export const POST = async (request) => {
       teacherId: body.id,
       questions: [
         {
-          questionGeneratedDate: new Date(),
+          questionGeneratedDate: Date.now(),
           questions: body.questions,
         },
       ],
     });
   } else {
     teacherInfo.questions.push({
-      questionGeneratedDate: new Date(),
+      questionGeneratedDate: Date.now(),
       questions: body.questions,
       numberOfQuestions: body.questions.length,
     });

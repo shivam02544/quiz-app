@@ -7,6 +7,8 @@ import toast from 'react-hot-toast';
 import Spinner from '../components/Spinner';
 
 const Page = () => {
+    const [userOtp, setUserOtp] = useState("");
+    const [otp, setOtp] = useState("");
     const [loading, setLoading] = useState(false)
     const router = useRouter()
     const [email, setEmail] = useState("");
@@ -20,21 +22,22 @@ const Page = () => {
             setLoading(false)
             return
         }
-        let userOtp = prompt("Enter your otp from your email address")
-        if (data.otp != userOtp) {
+        setOtp(data.otp)
+        document.getElementById('my_modal_1').showModal()
+        // let userOtp = prompt("Enter your otp from your email address")
+
+    }
+    async function checkOtp() {
+        if (userOtp != otp) {
             toast.error("Otp is not valid")
             setLoading(false)
             return
         }
         const token = await getToken(email)
         setLoading(false)
+        document.getElementById('my_modal_1').close()
         router.push(`forget-password/${token}`)
         toast.success("Redirecting to reset password page")
-
-
-
-
-
     }
     return (
         <div>
@@ -51,6 +54,19 @@ const Page = () => {
                         )}
                     </button>
                 </form>
+                <dialog id="my_modal_1" className="modal">
+                    <div className="modal-box flex flex-col items-center justify-center">
+                        <h3 className="font-bold text-lg m-4">Enter your otp from your email address</h3>
+                        <div className='flex gap-4'>
+                            <input
+                                onChange={(e) => setUserOtp(e.target.value)}
+                                type="text"
+                                placeholder="Type here"
+                                className="input input-bordered input-info w-full max-w-xs" />
+                            <button onClick={checkOtp} className='btn btn-primary '>Check</button>
+                        </div>
+                    </div>
+                </dialog>
             </div>
         </div >
     )

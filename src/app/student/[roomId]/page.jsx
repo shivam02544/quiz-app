@@ -48,10 +48,10 @@ const Page = ({ params }) => {
     };
     async function handleSubmit() {
         setLoading(true);
-        const quizSubmissionTime = new Date();
+        const quizSubmissionTime = Date.now();
         const token = localStorage.getItem("token");
         const student = await verifyToken(token)
-        const totalTimeTaken = getTimeInterval(quizStartTime, new Date());
+        const totalTimeTaken = getTimeInterval(quizStartTime, Date.now());
         const numberOfQuestions = questions.questions.length
         const res = await fetch(`/api/studentData`, {
             method: "POST",
@@ -96,10 +96,10 @@ const Page = ({ params }) => {
             setQuestions(data)
             setCurrentQuestion(data.questions[0])
             if (data.questions.length == 1) setSubmit(true)
-            setQuizStartTime(new Date())
+            setQuizStartTime(Date.now())
         }
         get();
-    })
+    }, [])
 
 
     if (!currentQuestion) {
