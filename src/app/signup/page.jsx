@@ -40,14 +40,14 @@ const Page = () => {
             return
         }
 
-        res = await fetch(`/api/users/`, {
+        let res = await fetch(`/api/users/`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(userData)
         })
-        data = await res.json();
+        let data = await res.json();
         if (!res.ok) {
             toast.error(data.message)
             setLoading(false)
