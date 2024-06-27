@@ -16,7 +16,9 @@ const Page = () => {
         setLoading(true)
         setUserOtp("")
         e.preventDefault()
-        let res = await fetch(`/api/sendOtp/${email}?role=forget`)
+        let res = await fetch(`/api/sendOtp/${email}?role=forget`, {
+            method: "POST",
+        })
         let data = await res.json();
         if (!res.ok) {
             toast.error(data.message)

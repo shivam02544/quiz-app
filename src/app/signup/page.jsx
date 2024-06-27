@@ -13,7 +13,9 @@ const Page = () => {
         setLoading(true)
         const formData = new FormData(e.target);
         const formObject = Object.fromEntries(formData.entries());
-        let res = await fetch(`/api/sendOtp/${formObject.email}?role=signup`)
+        let res = await fetch(`/api/sendOtp/${formObject.email}?role=signup`, {
+            method: "POST",
+        })
         let data = await res.json();
         if (!res.ok) {
             toast.error(data.message)

@@ -6,7 +6,7 @@ import nodemailer from "nodemailer";
 const generateOtp = () => {
   return Math.floor(100000 + Math.random() * 900000).toString();
 };
-export const GET = async (request, { params }) => {
+export const POST = async (request, { params }) => {
   const { searchParams } = new URL(request.url);
   const role = searchParams.get("role");
   try {
