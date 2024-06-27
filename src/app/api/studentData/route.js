@@ -51,3 +51,28 @@ export const POST = async (request) => {
     }
   );
 };
+
+export const PATCH = async (request) => {
+  const { searchParams } = await new URL(request.url);
+  const roomId = await searchParams.get("roomId");
+  try {
+    const results = await Student.find({
+      "results.roomId": roomId,
+    });
+    if (!results) {
+      return NextResponse.json([], {
+        status: 400,
+      });
+    }
+    return NextResponse.json(results, {
+      status: 200,
+    });
+  } catch (e) {
+    return NextResponse.json(
+      { message: "Something went wrong" },
+      {
+        status: 500,
+      }
+    );
+  }
+};

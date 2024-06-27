@@ -32,11 +32,14 @@ const Page = () => {
         if (userOtp != otp) {
             toast.error("Otp is not valid")
             setLoading(false)
+            document.getElementById('my_modal_1').close()
+            setUserOtp("")
             return
         }
         const token = await getToken(email)
         setLoading(false)
         document.getElementById('my_modal_1').close()
+        setUserOtp("")
         router.push(`forget-password/${token}`)
         toast.success("Redirecting to reset password page")
     }
