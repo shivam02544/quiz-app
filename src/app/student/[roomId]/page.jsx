@@ -103,7 +103,7 @@ const Page = ({ params }) => {
 
 
     if (!currentQuestion) {
-        return <div>Loading...</div>;
+        return <div>Loading <Spinner /></div>;
     }
 
 

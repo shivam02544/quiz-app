@@ -3,11 +3,13 @@ import HeaderAfterLogin from '@/app/components/HeaderAfterLogin'
 import Spinner from '@/app/components/Spinner';
 import { convertToDateAndFormat } from '@/helper/convertDate';
 import { verifyToken } from '@/helper/jwtToken';
+import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
 
 const Page = () => {
+    const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [currentQuiz, setCurrentQuiz] = useState([]);
     const [quizzes, setQuizzes] = useState([]);
@@ -62,7 +64,9 @@ const Page = () => {
         data = await res.json();
         setQuizzes(data.questions);
         toast.success(data.message)
-
+    }
+    function showResult(index) {
+        router.push(`/teacher/quizee/${quizzes[index].roomId}`)
     }
     return (
         <div>
@@ -74,11 +78,11 @@ const Page = () => {
                             <div key={quiz._id} className='flex flex-col justify-center border-primary border-[3px] m-4 p-2 rounded-md w-[30rem] gap-2 bg-blue-100 shadow-md'>
                                 <span className='text-md'>Quiz creation date: <span className='font-bold text-blue-700'>{convertToDateAndFormat(quiz.questionGeneratedDate)}</span> </span>
                                 <span className='text-md'>Room code: <span className='font-bold text-blue-700'>{quiz.roomId} </span></span>
-                                <div className='flex gap-12 px-6'>
+                                <div className='flex gap-12 px-6 flex-wrap'>
                                     <button onClick={() => showContent(index)} className='btn btn-primary'>Show quiz content</button>
                                     <button className='btn btn-primary'>Edit quiz content</button>
                                 </div>
-                                <div className='flex gap-6 px-6'>
+                                <div className='flex gap-6 px-6 '>
                                     <button onClick={() => deleteQuiz(index)} className='btn text-white  bg-red-600'>Delete quiz</button>
                                     <button onClick={() => copyRoomLink(index)} className='btn btn-primary'>
                                         {loading ? (
@@ -86,6 +90,7 @@ const Page = () => {
                                         ) : (
                                             'Copy room link'
                                         )}</button>
+                                    <button onClick={() => showResult(index)} className='btn bg-purple-500  text-white' >Student results</button>
                                 </div>
                             </div>
                         )
@@ -116,7 +121,7 @@ const Page = () => {
                     </div>
                 </dialog>
             </div>
-        </div>
+        </div >
     )
 }
 
