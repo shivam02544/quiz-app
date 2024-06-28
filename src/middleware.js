@@ -34,5 +34,6 @@ export const config = {
     "/teacher/createQuiz",
     "/student",
     "/student/:path*",
+    "/teacher/quizee:path*",
   ],
 };
