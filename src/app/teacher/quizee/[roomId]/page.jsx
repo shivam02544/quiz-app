@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
 
 const Page = ({ params }) => {
-    const [results, setResult] = useState([]);
+    const [results, setResults] = useState([]);
     useEffect(() => {
         async function get() {
             const response = await fetch(`/api/studentData?roomId=${params.roomId}`, {
@@ -19,7 +19,7 @@ const Page = ({ params }) => {
             }
             const data = await response.json()
             console.log(data);
-            setResult(data)
+            setResults(data)
         }
         get();
     }, [])
