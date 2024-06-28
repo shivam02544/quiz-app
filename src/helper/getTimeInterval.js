@@ -9,6 +9,5 @@ export function getTimeInterval(date1, date2) {
   // Convert the difference to minutes and seconds
   const minutes = Math.floor(differenceInMilliseconds / 60000);
   const seconds = Math.floor((differenceInMilliseconds % 60000) / 1000);
-
   return `${minutes} minute(s) and ${seconds} second(s)`;
 }

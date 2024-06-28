@@ -1,5 +1,6 @@
 import { connectDb } from "@/helper/connectDb";
 import Student from "@/models/student";
+import User from "@/models/userModel";
 import { NextResponse } from "next/server";
 export const GET = async (request) => {
   const { searchParams } = await new URL(request.url);
@@ -53,8 +54,8 @@ export const POST = async (request) => {
 };
 
 export const PATCH = async (request) => {
-  const { searchParams } = await new URL(request.url);
-  const roomId = await searchParams.get("roomId");
+  const { searchParams } = new URL(request.url);
+  const roomId = searchParams.get("roomId");
   try {
     await connectDb();
     const results = await Student.find({
@@ -65,7 +66,19 @@ export const PATCH = async (request) => {
         status: 400,
       });
     }
-    return NextResponse.json(results, {
+    const dataToSend = await Promise.all(
+      results.map(async (result) => {
+        const studentData = await User.findById(result.studentId);
+        return {
+          studentId: result.studentId,
+          name: studentData.name,
+          email: studentData.email,
+          results: result.results,
+        };
+      })
+    );
+
+    return NextResponse.json(dataToSend, {
       status: 200,
     });
   } catch (e) {

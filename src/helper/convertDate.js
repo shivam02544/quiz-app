@@ -1,22 +1,26 @@
-export function convertToDateAndFormat(timestamp) {
+export function convertToDateAndFormat(dateString) {
   // Create a new Date object from the timestamp
-  const date = new Date(timestamp);
+  // Convert date string to Date object
+  const date = new Date(dateString);
 
-  // Validate date object
-  if (isNaN(date.getTime())) {
-    throw new Error("Invalid timestamp");
+  // Check if the date is valid
+  if (isNaN(date)) {
+    throw new Error("Invalid date string");
   }
 
-  // Get individual components
-  const day = String(date.getUTCDate()).padStart(2, "0");
-  const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-based
-  const year = date.getUTCFullYear();
-  const hours = String(date.getUTCHours()).padStart(2, "0");
-  const minutes = String(date.getUTCMinutes()).padStart(2, "0");
-  const seconds = String(date.getUTCSeconds()).padStart(2, "0");
+  // Format options
+  const options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    hour12: true, // This will format the time in 12-hour format with AM/PM
+  };
 
-  // Format the date and time
-  const formattedDate = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+  // Format date to locale date and time string
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(date);
 
   return formattedDate;
 }
