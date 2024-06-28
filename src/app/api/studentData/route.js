@@ -69,11 +69,14 @@ export const PATCH = async (request) => {
     const dataToSend = await Promise.all(
       results.map(async (result) => {
         const studentData = await User.findById(result.studentId);
+        const filteredResults = result.results.filter(
+          (result) => result.roomId === roomId
+        );
         return {
           studentId: result.studentId,
           name: studentData.name,
           email: studentData.email,
-          results: result.results,
+          results: filteredResults,
         };
       })
     );
